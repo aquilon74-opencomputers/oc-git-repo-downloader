@@ -24,7 +24,7 @@ end
 
 
 local function get_file_commit(owner, repo, path)
-    r = requests.get("https://api.github.com/repos/"..owner.."/"..repo.."/commits?path="..path)
+    r = requests("https://api.github.com/repos/"..owner.."/"..repo.."/commits?path="..path)
 
     local commits = json:decode(r)
     
@@ -33,7 +33,7 @@ end
     
 
 local function get_raw_file(owner, repo, commit, path)
-    r = requests.get("https://raw.githubusercontent.com/"..owner.."/"..repo.."/"..commit.."/"..path)
+    r = requests("https://raw.githubusercontent.com/"..owner.."/"..repo.."/"..commit.."/"..path)
     return r
 end
     
