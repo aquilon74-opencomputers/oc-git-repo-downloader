@@ -63,6 +63,10 @@ local function download_repo(owner, repo, download_path)
         local path = download_path.."/"..repo.."/"..info.path
         print("saving "..info.path.."to "..path)
 
+        if not filesystem.exists(filesystem.path(path)) then
+            filesystem.makeDirectory(filesystem.path(path))
+        end
+
         local file = io.open(path, 'w')
         file:write(raw)
         file:close()
