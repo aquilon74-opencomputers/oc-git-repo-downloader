@@ -12,7 +12,7 @@ end
 local function get_files_paths(owner, repo)
     r = requests("https://api.github.com/repos/"..owner.."/"..repo.."/contents")
     
-    local data = json.decode(r)
+    local data = json:decode(r)
     local paths = {}
 
     for k, v in pairs(data) do
@@ -26,7 +26,7 @@ end
 local function get_file_commit(owner, repo, path)
     r = requests.get(f"https://api.github.com/repos/"..owner.."/"..repo.."/commits?path="..path)
 
-    local commits = json.decode(r)
+    local commits = json:decode(r)
     
     return commits[1].sha 
 end
