@@ -39,11 +39,11 @@ end
     
 
 local function download_repo(owner, repo, download_path)
-    local files_path = get_files_paths(owner, repo)
+    local files_paths = get_files_paths(owner, repo)
 
     local files_info = {}
 
-    for k, path in pairs(get_files_paths) do
+    for k, path in pairs(files_paths) do
         local commit = get_file_commit(owner, repo, path)
 
         info = {
