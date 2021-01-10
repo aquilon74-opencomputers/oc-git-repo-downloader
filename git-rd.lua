@@ -56,11 +56,18 @@ local function download_repo(owner, repo, download_path)
 
     for k, info in pairs(files_info) do
         local raw = get_raw_file(owner, repo, info.commit, info.path)
+        if raw == nil then
+            error("can't get the raw file:"..info.path )
+        end
+
         local path = download_path.."/"..repo.."/"..info.path
+        print("saving "..info.path.."to "..path)
 
         local file = io.open(path, 'w')
         file:write(raw)
         file:close()
+
+        print("saved "..info.path.."to "..path)
     end
 
     print("file downloaded")
