@@ -66,7 +66,7 @@ local function download_repo(owner, repo, download_path)
         if not filesystem.exists(filesystem.path(path)) then
             print(filesystem.path(path).." does not exist, creating it..")
             filesystem.makeDirectory(filesystem.path(path))
-            print(..filesystem.path(path).." created.")
+            print(filesystem.path(path).." created.")
         end
 
         local file = io.open(path, 'w')
