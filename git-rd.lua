@@ -70,10 +70,10 @@ end
 local args = {...}
 
 -- owner missing --> error
-if #args < 1 then print("error: owner parameter is missing") end
+if #args < 1 then error("error: owner parameter is missing") end
 
 -- repo missing --> error
-if #args < 2 then print("error: repo parameter is missing") end
+if #args < 2 then error("error: repo parameter is missing") end
 
 -- path missing --> use working directory
 if #args < 3 then args[3] = './' end
