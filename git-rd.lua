@@ -1,5 +1,6 @@
 local internet = require('internet')
 local json = require('json')
+local filesystem = require('filesystem')
 
 local function requests(url)
     local handle = internet.request(url)
@@ -61,7 +62,10 @@ local function download_repo(owner, repo, download_path)
         end
 
         local path = download_path.."/"..repo.."/"..info.path
+        
         print("saving "..info.path.." to "..path)
+        print(filesystem.path(path))
+        print(filesystem.exists(filesystem.path(path)))
 
         if not filesystem.exists(filesystem.path(path)) then
             print(filesystem.path(path).." does not exist, creating it..")
@@ -89,6 +93,6 @@ if #args < 1 then error("error: owner parameter is missing") end
 if #args < 2 then error("error: repo parameter is missing") end
 
 -- path missing --> use working directory
-if #args < 3 then args[3] = '.' end
+if #args < 3 then args[3] = os.getenv("PWD") end
 
 download_repo(args[1], args[2], args[3])
